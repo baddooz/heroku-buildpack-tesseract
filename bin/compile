@@ -12,12 +12,15 @@ ENVSCRIPT=$BUILD_DIR/.profile.d/tesseract-ocr.sh
 
 
 echo "Unpacking Tesseract-OCR binaries at $TESSERACT_OCR_DIR"
-mkdir -p $TESSERACT_OCR_DIR/tessdata
 mkdir -p $INSTALL_DIR/tessdata
 tar -zxvf $TESSERACT_OCR_TGZ -C $INSTALL_DIR
 
 echo 'Getting Tesseract-OCR training data'
 curl https://raw.githubusercontent.com/tesseract-ocr/tessdata/master/eng.traineddata > $INSTALL_DIR/tessdata/eng.traineddata
+
+echo "trained data"
+ls -al $INSTALL_DIR/tessdata/eng.traineddata
+
 
 mkdir -p $INSTALL_DIR/lib/linux-x86-64/
 cp $INSTALL_DIR/lib/*.* $INSTALL_DIR/lib/linux-x86-64/
