@@ -17,7 +17,7 @@ mkdir -p $INSTALL_DIR_TRAINING_DATA/tessdata
 tar -zxvf $TESSERACT_OCR_TGZ -C $INSTALL_DIR
 
 echo 'Getting Tesseract-OCR training data'
-curl https://raw.githubusercontent.com/tesseract-ocr/tessdata/master/eng.traineddata > $INSTALL_DIR_TRAINING_DATA/tessdata/eng.traineddata
+curl https://raw.githubusercontent.com/tesseract-ocr/tessdata/master/eng.traineddata > $TESSERACT_OCR_DIR/tessdata/eng.traineddata
 
 echo "Building runtime environment for Tesseract-OCR"
 mkdir -p $BUILD_DIR/.profile.d
