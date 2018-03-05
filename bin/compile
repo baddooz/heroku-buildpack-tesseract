@@ -11,20 +11,20 @@ TESSERACT_OCR_DIR=${HOME}/vendor/tesseract-ocr
 ENVSCRIPT=$BUILD_DIR/.profile.d/tesseract-ocr.sh
 
 
-echo "Unpacking Tesseract-OCR binaries"
-mkdir -p $TESSERACT_OCR_DIR
+echo "Unpacking Tesseract-OCR binaries at $TESSERACT_OCR_DIR"
 mkdir -p $TESSERACT_OCR_DIR/tessdata
-tar -zxvf $TESSERACT_OCR_TGZ -C $TESSERACT_OCR_DIR
+mkdir -p $INSTALL_DIR/tessdata
+tar -zxvf $TESSERACT_OCR_TGZ -C $INSTALL_DIR
 
 echo 'Getting Tesseract-OCR training data'
-curl https://raw.githubusercontent.com/tesseract-ocr/tessdata/master/eng.traineddata > $TESSERACT_OCR_DIR/tessdata/eng.traineddata
+curl https://raw.githubusercontent.com/tesseract-ocr/tessdata/master/eng.traineddata > $INSTALL_DIR/tessdata/eng.traineddata
 
-mkdir -p $TESSERACT_OCR_DIR/lib/linux-x86-64/
-cp $TESSERACT_OCR_DIR/lib/*.* $TESSERACT_OCR_DIR/lib/linux-x86-64/
-mv $TESSERACT_OCR_DIR/lib/linux-x86-64/libtesseract.so.3 $TESSERACT_OCR_DIR/lib/linux-x86-64/libtesseract.so
+mkdir -p $INSTALL_DIR/lib/linux-x86-64/
+cp $INSTALL_DIR/lib/*.* $INSTALL_DIR/lib/linux-x86-64/
+mv $INSTALL_DIR/lib/linux-x86-64/libtesseract.so.3 $INSTALL_DIR/lib/linux-x86-64/libtesseract.so
 
 echo "listing files for linux.."
-ls -al $TESSERACT_OCR_DIR/lib/linux-x86-64/
+ls -al $INSTALL_DIR/lib/linux-x86-64/
 
 echo "Building runtime environment for Tesseract-OCR"
 mkdir -p $BUILD_DIR/.profile.d
